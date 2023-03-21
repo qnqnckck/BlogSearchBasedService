@@ -64,9 +64,6 @@ $ java -jar bsbs-0.0.1-SNAPSHOT.jar
 * API 기능 확정을 고려한 설계
     * 검색어 기반의 경우 Content(검색 대상) 파라미터를 추가하여 추후 검색 API 신규 추가 없이 개발 가능
 
-### 블로그 검색시 시나리오 정의
-* 
-
 ## IMPLEMENTATION
 ### 기술스택
 * springboot
