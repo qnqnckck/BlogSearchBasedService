@@ -9,11 +9,20 @@
     * 실시간 검색 키워드 Top 10
 
 ## Usage
-* 프로젝트 실행
-    * 프로젝트 폴더에서 아래 명령을 수행하여 서버를 동작시킵니다.
+* 프로젝트 실행 방법1
+    * 코드를 다운로드 받아 프로젝트 폴더에서 아래 명령을 수행하여 서버를 동작시킵니다.
 ```sh
+$ git clone https://github.com/qnqnckck/BlogSearchBasedService.git
+$ cd BlogSearchBasedService
 $ ./gradlew clean bootRun
 ```
+* 프로젝트 실행 방법2
+  * [jar 다운로드](https://drive.google.com/file/d/1150i0bCWg6SZltqtUGCENJwhoYx0GIZi/view?usp=share_link) 후 아래와 같이 실행합니다.
+
+```sh
+$ java -jar bsbs-0.0.1-SNAPSHOT.jar
+```
+
 
 * API 호출
     * Intellij에서 api.http 파일내 API를 호출
@@ -31,13 +40,13 @@ $ ./gradlew clean bootRun
 ### 전체 시스템 Architecture
 기능을 구현할 서버(API Server) 이외에 전체 아키텍처를 고민하여 개발 범위를 산정하였습니다.
 * 1안
-    * ![architecture1](https://user-images.githubusercontent.com/10949665/170044674-568ec367-168b-426f-99e1-0c7551e55b07.png)
+    * ![architecture1](https://user-images.githubusercontent.com/10949665/226685929-3813ef0a-f73b-4eae-a646-9c34bf1d16b9.png)
         * API Server에 대한 키워드 요청에 대한 로그 수집을 ELK를 활용합니다.
         * 검색어 랭킹의 경우 실시간으로 데이터의 정확성이 보장 될 필요가 없으므로 기반시스템 구성에 Jenkins 배치를 통해 주기적으로 Redis에 업데이트하여 랭킹을 제공합니다.
 
 
 * 2안
-    * ![architecture2](https://user-images.githubusercontent.com/10949665/170044658-bfa54706-44a2-4d98-85d6-d794f762990b.png)
+    * ![architecture2](https://user-images.githubusercontent.com/10949665/226685956-3f82f6b1-97c1-411f-87b3-6145bdecadb1.png)
         * 실시간 랭킹을 제공하기 위한 방법으로 Redis Sorted Set(Zset) 기능을 사용합니다.
         * 요청이 올때마다 Redis에 업데이트하여 랭킹을 산정합니다.
         * 문제 발생시 랭킹에 대한 데이터 보존을 위한 Snapshot으로 배치를 통해 DB에 저장합니다.
