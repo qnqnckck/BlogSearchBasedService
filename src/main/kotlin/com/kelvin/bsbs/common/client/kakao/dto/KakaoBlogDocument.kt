@@ -6,7 +6,6 @@ import java.time.LocalDateTime
 @JsonIgnoreProperties(ignoreUnknown = true)
 class KakaoBlogDocument(
     val title: String,
-    val contents: String,
     val url: String,
     val blogname: String,
     val thumbnail: String,

@@ -19,6 +19,7 @@ class SearchRepository(
 
     fun searchBlog(query: String, sort: String?, page: Int?, size: Int?): KakaoSearchBlogResponse {
         notifyBy(query)
+
         return kakaoClient.searchBlog(
             query = query,
             sort = sort,
@@ -27,7 +28,7 @@ class SearchRepository(
         )
     }
 
-    private fun notifyBy(query: String) {
+    private  fun notifyBy(query: String) {
         val score = 0.0
         try {
             redisTemplate.opsForZSet().incrementScore(RANKING_KEYWORD_REDIS_KEY, query, 1.0)

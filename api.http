@@ -1,19 +1,19 @@
 ###
 ### 검색어 랭킹 검색
-GET http://localhost:8080/ranking/search/keyword/v1
+GET http://localhost:8080/rank/v1
 Accept: application/json
 
 ###
-### 장소 검색
-GET http://localhost:8080/place/search/v1?keyword=곱창
+### 블로그 검색
+GET http://localhost:8080/search/v1?query=TDD
 Accept: application/json
 
 ###
-### 장소 검색
-GET http://localhost:8080/place/search/v1?keyword=막창
+### 블로그 검색
+GET http://localhost:8080/search/v1?query=EDD
 Accept: application/json
 
 ###
-### 장소 검색
-GET http://localhost:8080/place/search/v1?keyword=대창
+### 블로그 검색
+GET http://localhost:8080/search/v1?query=ELK
 Accept: application/json

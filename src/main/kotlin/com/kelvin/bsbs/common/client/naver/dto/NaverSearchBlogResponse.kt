@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class NaverSearchBlogResponse(
-    val meta: NaverMeta,
-    val documents: List<NaverBlogDocument>
+    val lastBuildDate: String,
+    val total: Int,
+    val start : Int,
+    val display: Int,
+    val items: List<NaverBlogDocument>
 )

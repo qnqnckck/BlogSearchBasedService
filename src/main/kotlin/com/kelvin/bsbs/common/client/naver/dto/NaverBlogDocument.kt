@@ -6,9 +6,9 @@ import java.time.LocalDateTime
 @JsonIgnoreProperties(ignoreUnknown = true)
 class NaverBlogDocument(
     val title: String,
-    val contents: String,
-    val url: String,
-    val blogname: String,
-    val thumbnail: String,
-    val datetime: LocalDateTime,
+    val description: String,
+    val link: String,
+    val bloggername: String,
+    val bloggerlink: String,
+    val postdate: String,
 )

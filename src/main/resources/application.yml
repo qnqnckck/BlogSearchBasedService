@@ -32,8 +32,6 @@ resilience4j:
 client:
   kakao:
     host: https://dapi.kakao.com
-    uri:
-      keyword-search: /v2/local/search/keyword.json
     max-count: 10
     api-key: "KakaoAK 8a1fc355ec8f1ea41603629966eda96f"
   naver:
