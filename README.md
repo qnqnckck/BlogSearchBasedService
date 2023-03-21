@@ -1,4 +1,4 @@
-# Blog Search Based Service(PSBS) by keyword
+# Blog Search Based Service(BSBS) by keyword
 [![Build Status](https://travis-ci.org/dwyl/esta.svg?branch=master)](https://travis-ci.org/)
 
 키워드 기반의 블로그 검색 서비스입니다. 블로그를 키워드 검색으로 제공하는 API 를 통해 데이터를
@@ -49,14 +49,13 @@ $ java -jar bsbs-0.0.1-SNAPSHOT.jar
     * ![architecture2](https://user-images.githubusercontent.com/10949665/226685956-3f82f6b1-97c1-411f-87b3-6145bdecadb1.png)
         * 실시간 랭킹을 제공하기 위한 방법으로 Redis Sorted Set(Zset) 기능을 사용합니다.
         * 요청이 올때마다 Redis에 업데이트하여 랭킹을 산정합니다.
-        * 문제 발생시 랭킹에 대한 데이터 보존을 위한 Snapshot으로 배치를 통해 DB에 저장합니다.
 
-최종적으로 2안으로 채택하였습니다. API 제공 서버 기준으로 실시간 랭킹 구현이 Redis에 업데이트하는 기능을 포함하고 있어 더 많은 기능을 기준으로 선정하였습니다.
+최종적으로 2안으로 채택하였습니다. API 제공 서버 기준으로 실시간 랭킹 구현이 Redis에 api 서버에서 직업 업데이트하는 것으로 개발하였습니다.
 
 ### 설계 및 구현시 고려사항
 * 응답성 개선
   * 키워드 검색시 성능 및 동시성 이슈를 해결하기 위해 싱글 스레드 기반의 전체 시스템이 공유하는 Global Redis Server가 있다는 가정하에 설계 하였습니다.
-    * 로컬 동작시 테스트를 위해 임베디드 Redis 서버도 추가구성하였습니다.
+    * 로컬 동작시 테스트를 위해 임베디드 Redis 서버도 추가 구성하였습니다.
 * 장애 처리 방안
   * 블로그 검색시 카카오 API의 Fallback이 발생하는 경우
     * 네이버 오픈 API를 통해 대체
