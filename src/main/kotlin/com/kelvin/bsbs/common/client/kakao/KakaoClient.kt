@@ -15,8 +15,8 @@ interface KakaoClient {
     @GetMapping("/v2/search/blog")
     fun searchBlog(
         @RequestParam query: String,
-        @RequestParam(required = false) sort: String,
-        @RequestParam(required = false) page: Int,
-        @RequestParam(required = false) size: Int
+        @RequestParam(required = false) sort: String?,
+        @RequestParam(required = false) page: Int?,
+        @RequestParam(required = false) size: Int?
     ): KakaoSearchBlogResponse
 }
