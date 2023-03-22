@@ -40,13 +40,13 @@ $ java -jar bsbs-0.0.1-SNAPSHOT.jar
 ### 전체 시스템 Architecture
 기능을 구현할 서버(API Server) 이외에 전체 아키텍처를 고민하여 개발 범위를 산정하였습니다.
 * 1안
-    * ![architecture1](https://user-images.githubusercontent.com/10949665/226685929-3813ef0a-f73b-4eae-a646-9c34bf1d16b9.png)
+    * ![architecture1](https://user-images.githubusercontent.com/10949665/226908854-c6bf8581-51d8-47b5-b4dd-47a11e490add.png)
         * API Server에 대한 키워드 요청에 대한 로그 수집을 ELK를 활용합니다.
         * 검색어 랭킹의 경우 실시간으로 데이터의 정확성이 보장 될 필요가 없으므로 기반시스템 구성에 Jenkins 배치를 통해 주기적으로 Redis에 업데이트하여 랭킹을 제공합니다.
 
 
 * 2안
-    * ![architecture2](https://user-images.githubusercontent.com/10949665/226685956-3f82f6b1-97c1-411f-87b3-6145bdecadb1.png)
+    * ![architecture2](https://user-images.githubusercontent.com/10949665/226908864-55d22185-542b-42a1-8ed2-276aebaea010.png)
         * 실시간 랭킹을 제공하기 위한 방법으로 Redis Sorted Set(Zset) 기능을 사용합니다.
         * 요청이 올때마다 Redis에 업데이트하여 랭킹을 산정합니다.
 
