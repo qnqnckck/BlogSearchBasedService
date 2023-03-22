@@ -17,7 +17,7 @@ $ cd BlogSearchBasedService
 $ ./gradlew clean bootRun
 ```
 * 프로젝트 실행 방법2
-  * [jar 다운로드](https://drive.google.com/file/d/1150i0bCWg6SZltqtUGCENJwhoYx0GIZi/view?usp=share_link) 후 아래와 같이 실행합니다.
+  * [jar 다운로드](https://drive.google.com/file/d/1oFIwunouO7kyLee1a125q1R5bzB3832h/view?usp=share_link) 후 아래와 같이 실행합니다.
 
 ```sh
 $ java -jar bsbs-0.0.1-SNAPSHOT.jar
