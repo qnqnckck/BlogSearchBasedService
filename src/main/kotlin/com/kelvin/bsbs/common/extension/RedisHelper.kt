@@ -11,7 +11,6 @@ class RedisHelper (
     companion object{
         private val logger = getLogger()
     }
-    @Synchronized
     fun increaseKeywordCount(query: String){
         try {
             redisTemplate.opsForZSet().incrementScore(RANKING_KEYWORD_REDIS_KEY, query, 1.0)
