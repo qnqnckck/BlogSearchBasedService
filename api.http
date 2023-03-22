@@ -17,3 +17,22 @@ Accept: application/json
 ### 블로그 검색
 GET http://localhost:8080/search/v1?query=ELK
 Accept: application/json
+
+
+###
+### 카카오 블로그  Fallback 발생 후 Naver 블로그 검색
+### 카카오의 경우 page 검색이 50까지만 가능함.
+GET http://localhost:8080/search/v1?query=ELK&page=60
+Accept: application/json
+
+###
+### 카카오 블로그  Fallback 발생 후 Naver 블로그 검색
+### 카카오의 경우 page 검색이 50까지만 가능함.
+GET http://localhost:8080/search/v1?query=ELK&page=60
+Accept: application/json
+
+###
+### 카카오 블로그  Fallback 발생 후 Naver Fallback 발생 후 Empty 제공
+### 카카오의 경우 page 검색이 50까지만 가능함. 네이버는 페이지 100까지 제공
+GET http://localhost:8080/search/v1?query=ELK&page=101
+Accept: application/json
