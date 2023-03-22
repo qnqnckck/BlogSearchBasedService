@@ -1,13 +1,14 @@
 package com.kelvin.bsbs.endpoints.search.controller
 
+import com.kelvin.bsbs.common.dto.SuccessResponse
+import com.kelvin.bsbs.common.dto.toSuccessResponse
+import com.kelvin.bsbs.endpoints.search.dto.BlogResponse
 import com.kelvin.bsbs.endpoints.search.service.SearchService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.tags.Tag
-import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
-import org.jetbrains.annotations.NotNull
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -39,18 +40,18 @@ class SearchController(
         @RequestParam(required = true)
         @NotBlank
         query: String,
-        @Parameter(required = false, description = "검색 타겟",)
+        @Parameter(required = false, description = "검색 타겟")
         @RequestParam(required = false, defaultValue = "BLOG")
         content: String?,
-        @Parameter(required = false, description = "결과문서 정렬 방식 accuracy(정확도순) 또는 recency(최신순), 기본 값 accuracy",)
+        @Parameter(required = false, description = "결과문서 정렬 방식 accuracy(정확도순) 또는 recency(최신순), 기본 값 accuracy")
         @RequestParam(required = false)
         sort: String?,
-        @Parameter(required = false, description = "결과 페이지 번호, 1~50 사이의 값, 기본 값 1",)
+        @Parameter(required = false, description = "결과 페이지 번호, 1~50 사이의 값, 기본 값 1")
         @RequestParam(required = false)
         page: Int?,
         @RequestParam(required = false)
         size: Int?
-    ) = searchService.searchByQuery(query, content, sort, page, size)
+    ): SuccessResponse<BlogResponse> = searchService.searchByQuery(query, content, sort, page, size).toSuccessResponse()
 
 
 }

@@ -18,6 +18,6 @@ interface KakaoClient {
         @RequestParam query: String,
         @RequestParam(required = false) sort: String?,
         @RequestParam(required = false) page: Int?,
-        @RequestParam(required = false) size: Int? = 10
+        @RequestParam(required = false) size: Int? = 10,
     ): KakaoSearchBlogResponse
 }

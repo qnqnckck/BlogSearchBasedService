@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @Tag(name = "랭킹 API", description = "검색 기능을 제공합니다.")
@@ -32,6 +33,9 @@ class RankingController(
             )
         ]
     )
-    fun searchKeywordTop10(): SuccessResponse<List<RankingKeywordItem>> =
-        rankingService.getSearchKeywordRank().toSuccessResponse()
+    fun searchKeywordTop10(
+        @RequestParam(required = false)
+        size: Int?
+    ): SuccessResponse<List<RankingKeywordItem>> =
+        rankingService.getSearchKeywordRank(size?:10).toSuccessResponse()
 }

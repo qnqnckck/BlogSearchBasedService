@@ -1,7 +1,6 @@
 package com.kelvin.bsbs.common.client.kakao.dto
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import java.time.LocalDateTime
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 class KakaoBlogDocument(

@@ -1,25 +1,12 @@
 package com.kelvin.bsbs.common.client.naver
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import feign.Request
+import com.kelvin.bsbs.runtime.feign.FeignBaseConfig
 import feign.RequestInterceptor
 import feign.RequestTemplate
-import com.kelvin.bsbs.runtime.feign.FeignBaseConfig
-import feign.Response
-import feign.codec.ErrorDecoder
 import org.springframework.context.annotation.Bean
 import org.springframework.core.env.Environment
-import org.springframework.web.bind.annotation.RequestHeader
 
 class NaverFeignConfig(val env: Environment) : FeignBaseConfig() {
-
-    @Bean
-    override fun feignRequestOptions(): Request.Options {
-        this.connectTimeout = 2
-        this.readTimeout = 3
-
-        return super.feignRequestOptions()
-    }
 
     @Bean
     fun requestUserAgentInterceptor(): RequestInterceptor {

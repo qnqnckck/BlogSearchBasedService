@@ -5,12 +5,10 @@ import jakarta.annotation.PreDestroy
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
-import org.springframework.util.StringUtils
 import redis.embedded.RedisServer
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-
 
 @Configuration
 @Profile("local")
@@ -18,7 +16,7 @@ class LocalEmbeddedRedisConfig {
     @Value("\${spring.data.redis.port}")
     private val port = 0
 
-    /**
+    /**z
      * Local Redis Server start
      */
     private var redisServer: RedisServer? = null
@@ -42,7 +40,7 @@ class LocalEmbeddedRedisConfig {
      */
     @get:Throws(IOException::class)
     private val isRedisRunning: Boolean
-        private get() = isRunning(executeGrepProcessCommand(port))
+        get() = isRunning(executeGrepProcessCommand(port))
 
     /**
      * 해당 port를 사용중인 프로세스 확인하는 sh 실행

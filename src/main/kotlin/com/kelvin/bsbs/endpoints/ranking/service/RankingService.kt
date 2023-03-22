@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class RankingService(
-    private val rankingRepository: RankingRepository,
+    private val rankingRepository: RankingRepository
 ) {
-    fun getSearchKeywordRank(): List<RankingKeywordItem> = rankingRepository.getSearchKeywordRank()
+    fun getSearchKeywordRank(size:Int): List<RankingKeywordItem> = rankingRepository.getSearchKeywordRank(size)
 }

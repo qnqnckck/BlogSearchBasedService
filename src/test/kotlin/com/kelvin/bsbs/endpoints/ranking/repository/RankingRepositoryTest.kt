@@ -24,6 +24,7 @@ internal class RankingRepositoryTest{
     @DisplayName("실시간 검색어 랭킹 업데이트 및 조회 - 10개 이하 ")
     fun rankingTest1() {
         //given
+        val size = 10
         for (i in 1..4) {
             for(k in (5-i)..4) {
                 searchRepository.searchBlog("keyword$i", null, null, null)
@@ -31,7 +32,7 @@ internal class RankingRepositoryTest{
         }
 
         //then
-        val rankingKeywordItems: List<RankingKeywordItem> = rankingRepository.getSearchKeywordRank()
+        val rankingKeywordItems: List<RankingKeywordItem> = rankingRepository.getSearchKeywordRank(size)
         var i = 4
         for (rankingKeywordItem in rankingKeywordItems) {
             Assertions.assertThat(rankingKeywordItem.keyword).isEqualTo("keyword$i")

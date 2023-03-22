@@ -2,6 +2,8 @@ package com.kelvin.bsbs.runtime.advisor
 
 import com.kelvin.bsbs.common.dto.ErrorResponse
 import com.kelvin.bsbs.common.dto.MetaResponse
+import com.kelvin.bsbs.common.dto.ResponseCode
+import com.kelvin.bsbs.common.exception.ServiceException
 import com.kelvin.bsbs.common.extension.getLogger
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -18,8 +20,14 @@ class GlobalServiceExceptionHandler {
 
     @ExceptionHandler(Exception::class)
     fun exceptionHandler(e: Exception): ResponseEntity<ErrorResponse> {
-        logger.error("Exception message={}", e.message, e);
-        return handleError(HttpStatus.INTERNAL_SERVER_ERROR, e);
+        logger.error("Exception message={}", e.message, e)
+        return handleError(HttpStatus.INTERNAL_SERVER_ERROR, e)
+    }
+
+    @ExceptionHandler(ServiceException::class)
+    fun serviceExceptionHandler(e: ServiceException): ResponseEntity<ErrorResponse> {
+        logger.error("Exception message={}, code={}", e.message, e.getErrorCode())
+        return handleError(e.getResponseStatus(), e, e.message, e.getErrorCode().code)
     }
 
     @ExceptionHandler(
@@ -27,21 +35,20 @@ class GlobalServiceExceptionHandler {
         MissingServletRequestParameterException::class
     )
     fun handleBadRequest(e: java.lang.Exception): ResponseEntity<ErrorResponse> {
-        // 상세 서비스 에러 코드를 따로 정의하지 않았기 때문에, -1
-        // 400X Client Bad Request로 Info 로 출력
         logger.info("Exception message={}", e.message, e)
-        return handleError(HttpStatus.BAD_REQUEST, e)
+        return handleError(HttpStatus.BAD_REQUEST, e, e.message, ResponseCode.INVALID_PARAMETER.code)
     }
 
     fun handleError(responseStatus: HttpStatus?, e: Throwable): ResponseEntity<ErrorResponse> {
-        return handleError(responseStatus, e, e.message)
+        return handleError(responseStatus, e, e.message, -1)
     }
 
     fun handleError(
         responseStatus: HttpStatus?,
         e: Throwable?,
-        message: String?
+        message: String?,
+        code: Int,
     ): ResponseEntity<ErrorResponse> {
-        return ResponseEntity.status(responseStatus!!).body(ErrorResponse(meta = MetaResponse(-1)))
+        return ResponseEntity.status(responseStatus!!).body(ErrorResponse(meta = MetaResponse(code)))
     }
 }
